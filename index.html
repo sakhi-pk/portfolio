@@ -1,0 +1,604 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Syed Ahmed Kabir Hashmi — AI &amp; Digital Skills Educator, Growth Mindset Coach</title>
+<meta name="description" content="Syed Ahmed Kabir Hashmi (SAK Coaching) teaches beginners to build with Python, AI and prompt engineering, and coaches freelancers and pre-entrepreneurs through the Growth Mindset System, Ultimate Digital Warrior and the 90-Day Run Framework.">
+<link rel="icon" href="data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 100 100'%3E%3Crect width='100' height='100' fill='%2314213A'/%3E%3Ctext x='50' y='64' font-size='46' font-family='Georgia,serif' fill='%23E0A73D' text-anchor='middle'%3ES%3C/text%3E%3C/svg%3E">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Space+Grotesk:wght@500;600;700&family=Source+Serif+4:opsz,wght@8..60,400;8..60,500;8..60,600&family=IBM+Plex+Mono:wght@400;500&display=swap" rel="stylesheet">
+<style>
+  :root{
+    --ink:#14213A;
+    --ink-2:#1D2D4C;
+    --paper:#EDEAE1;
+    --paper-2:#E3DFD3;
+    --chalk:#F4F1E7;
+    --cyan:#4A87B5;
+    --marigold:#E0A73D;
+    --marigold-dark:#C68F2B;
+    --sage:#5C7A5E;
+    --line:rgba(20,33,58,.16);
+    --line-chalk:rgba(244,241,231,.22);
+    --max:1100px;
+  }
+  *{box-sizing:border-box;}
+  html{scroll-behavior:smooth;}
+  @media (prefers-reduced-motion: reduce){
+    html{scroll-behavior:auto;}
+    *{animation-duration:.001ms !important; animation-iteration-count:1 !important; transition-duration:.001ms !important;}
+  }
+  body{
+    margin:0;
+    background:var(--paper);
+    color:var(--ink);
+    font-family:'Source Serif 4', Georgia, serif;
+    font-size:1.05rem;
+    line-height:1.7;
+    -webkit-font-smoothing:antialiased;
+  }
+  h1,h2,h3,.mono{font-family:'Space Grotesk',ui-sans-serif,system-ui,sans-serif;}
+  .mono-num{font-family:'IBM Plex Mono',ui-monospace,monospace;}
+  a{color:inherit;}
+  img{max-width:100%;display:block;}
+  .wrap{max-width:var(--max); margin:0 auto; padding:0 28px;}
+  .skip-link{
+    position:absolute; left:-999px; top:auto;
+    background:var(--marigold); color:var(--ink); padding:10px 16px; z-index:200;
+    font-family:'Space Grotesk',sans-serif; font-weight:600; text-decoration:none;
+  }
+  .skip-link:focus{left:16px; top:16px;}
+  a:focus-visible, button:focus-visible{
+    outline:2px solid var(--marigold); outline-offset:3px;
+  }
+
+  /* ---------- Nav ---------- */
+  header.site-nav{
+    position:sticky; top:0; z-index:100;
+    background:rgba(237,234,225,.92);
+    backdrop-filter:blur(6px);
+    border-bottom:1px solid var(--line);
+  }
+  .nav-row{
+    max-width:var(--max); margin:0 auto; padding:16px 28px;
+    display:flex; align-items:center; justify-content:space-between;
+  }
+  .brand{
+    font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.05rem;
+    letter-spacing:.03em; text-decoration:none;
+  }
+  .brand span{color:var(--marigold);}
+  nav.links{display:flex; gap:28px; list-style:none; margin:0; padding:0;}
+  nav.links a{
+    text-decoration:none; font-family:'Space Grotesk',sans-serif; font-size:.94rem;
+    font-weight:500; padding:4px 2px; border-bottom:2px solid transparent;
+  }
+  nav.links a:hover{border-bottom-color:var(--marigold);}
+  .nav-toggle{
+    display:none; background:none; border:1px solid var(--line); border-radius:4px;
+    width:40px; height:36px; cursor:pointer; padding:0;
+  }
+  .nav-toggle span{
+    display:block; width:18px; height:2px; background:var(--ink); margin:4px auto;
+  }
+  @media (max-width:760px){
+    nav.links{
+      position:fixed; inset:60px 0 auto 0; background:var(--paper);
+      flex-direction:column; gap:0; border-bottom:1px solid var(--line);
+      transform:translateY(-120%); transition:transform .25s ease;
+    }
+    nav.links.open{transform:translateY(0);}
+    nav.links a{padding:16px 28px; border-bottom:1px solid var(--line); width:100%;}
+    .nav-toggle{display:block;}
+  }
+
+  /* ---------- Side tab ---------- */
+  .side-tab{
+    position:fixed; right:0; top:58%; transform:translateY(-50%);
+    background:var(--marigold); color:var(--ink); text-decoration:none;
+    padding:16px 11px; writing-mode:vertical-rl; text-orientation:mixed;
+    font-family:'IBM Plex Mono',monospace; font-size:.76rem; letter-spacing:.02em;
+    border-radius:8px 0 0 8px; box-shadow:-3px 3px 14px rgba(20,33,58,.28);
+    z-index:90; line-height:1.5;
+  }
+  .side-tab:hover{background:var(--marigold-dark);}
+
+  /* ---------- Blueprint section (dark) ---------- */
+  .blueprint{
+    background-color:var(--ink);
+    background-image:
+      linear-gradient(rgba(74,135,181,.16) 1px, transparent 1px),
+      linear-gradient(90deg, rgba(74,135,181,.16) 1px, transparent 1px);
+    background-size:34px 34px;
+    color:var(--chalk);
+  }
+
+  /* ---------- Hero ---------- */
+  .hero{padding:76px 0 88px;}
+  .hero-grid{
+    display:grid; grid-template-columns:1.15fr .85fr; gap:56px; align-items:center;
+  }
+  @media (max-width:820px){ .hero-grid{grid-template-columns:1fr; gap:40px;} }
+  .hero h1{
+    font-size:clamp(2.3rem,4.6vw,3.6rem); line-height:1.08; font-weight:600;
+    margin:0 0 22px; letter-spacing:-.01em;
+  }
+  .hero p.lede{
+    font-size:1.15rem; line-height:1.65; color:rgba(244,241,231,.86); max-width:52ch; margin:0 0 32px;
+  }
+  .btn-row{display:flex; gap:16px; flex-wrap:wrap;}
+  .btn{
+    display:inline-block; font-family:'Space Grotesk',sans-serif; font-weight:600;
+    font-size:.96rem; padding:14px 24px; border-radius:4px; text-decoration:none;
+    border:1px solid transparent;
+  }
+  .btn-primary{background:var(--marigold); color:var(--ink);}
+  .btn-primary:hover{background:#EFB752;}
+  .btn-ghost{border-color:rgba(244,241,231,.5); color:var(--chalk);}
+  .btn-ghost:hover{border-color:var(--marigold); color:var(--marigold);}
+  .btn-ghost.on-paper{border-color:var(--ink); color:var(--ink);}
+  .btn-ghost.on-paper:hover{border-color:var(--cyan); color:var(--cyan);}
+
+  .portrait-frame{
+    position:relative; border:1px solid rgba(74,135,181,.55); border-radius:6px;
+    padding:12px; max-width:360px; margin-left:auto;
+  }
+  .portrait-frame img{border-radius:3px;}
+  .portrait-frame .corner{
+    position:absolute; width:14px; height:14px; border:2px solid var(--marigold);
+  }
+  .corner.tl{top:-2px; left:-2px; border-right:none; border-bottom:none;}
+  .corner.br{bottom:-2px; right:-2px; border-left:none; border-top:none;}
+  .portrait-cap{
+    font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:rgba(244,241,231,.7);
+    text-align:center; margin-top:12px;
+  }
+
+  /* ---------- Stat strip ---------- */
+  .stats{padding:44px 0; border-bottom:1px solid var(--line);}
+  .stats-row{
+    display:grid; grid-template-columns:repeat(4,1fr); gap:28px;
+  }
+  @media (max-width:760px){ .stats-row{grid-template-columns:repeat(2,1fr);} }
+  .stat-num{font-size:2rem; font-weight:500; color:var(--ink);}
+  .stat-label{font-size:.88rem; color:rgba(20,33,58,.72); margin-top:4px; max-width:22ch;}
+
+  /* ---------- Section shell ---------- */
+  section{padding:88px 0;}
+  .section-head{max-width:62ch; margin-bottom:44px;}
+  .section-head h2{font-size:clamp(1.7rem,3vw,2.2rem); font-weight:600; margin:0 0 14px; letter-spacing:-.01em;}
+  .section-head p{margin:0; color:rgba(20,33,58,.78);}
+  .blueprint .section-head p{color:rgba(244,241,231,.82);}
+
+  /* ---------- About ---------- */
+  .about-grid{display:grid; grid-template-columns:1.1fr .9fr; gap:52px;}
+  @media (max-width:820px){ .about-grid{grid-template-columns:1fr;} }
+  .about-grid p{margin:0 0 18px;}
+  blockquote.pull{
+    margin:0; padding:22px 24px; background:var(--chalk); border-left:3px solid var(--cyan);
+    font-size:1.02rem; color:var(--ink);
+  }
+  .credentials{
+    margin-top:22px; padding-top:18px; border-top:1px solid var(--line);
+    font-family:'IBM Plex Mono',monospace; font-size:.82rem; color:rgba(20,33,58,.7); line-height:2;
+  }
+
+  /* ---------- Journey timeline ---------- */
+  .timeline{border-left:1px solid rgba(74,135,181,.5); margin-left:6px; padding-left:32px;}
+  .t-item{position:relative; padding-bottom:36px;}
+  .t-item:last-child{padding-bottom:0;}
+  .t-item::before{
+    content:""; position:absolute; left:-38px; top:6px; width:10px; height:10px;
+    background:var(--marigold); border-radius:50%;
+  }
+  .t-year{font-family:'IBM Plex Mono',monospace; font-size:.84rem; color:var(--marigold); margin-bottom:4px;}
+  .t-item h3{font-size:1.08rem; font-weight:600; margin:0 0 6px; color:var(--chalk);}
+  .t-item p{margin:0; color:rgba(244,241,231,.82); max-width:58ch;}
+
+  /* ---------- Who I help ---------- */
+  .help-grid{display:grid; grid-template-columns:1fr 1fr; gap:28px;}
+  @media (max-width:760px){ .help-grid{grid-template-columns:1fr;} }
+  .help-panel{padding:28px; background:var(--chalk); border-left:4px solid var(--sage);}
+  .help-panel.biz{border-left-color:var(--cyan);}
+  .help-panel h3{font-size:1.15rem; font-weight:600; margin:0 0 12px;}
+  .help-panel p{margin:0; font-size:.98rem;}
+
+  /* ---------- Programs list ---------- */
+  .program-list{border-top:1px solid var(--line);}
+  .program{
+    display:grid; grid-template-columns:1.4fr 2.4fr auto; gap:24px; align-items:start;
+    padding:24px 0; border-bottom:1px solid var(--line);
+  }
+  @media (max-width:700px){ .program{grid-template-columns:1fr; gap:8px;} }
+  .program h3{font-size:1.08rem; font-weight:600; margin:0;}
+  .program p{margin:0; font-size:.97rem; color:rgba(20,33,58,.8);}
+  .program .p-link{
+    font-family:'IBM Plex Mono',monospace; font-size:.82rem; text-decoration:none;
+    color:var(--cyan); white-space:nowrap; align-self:center;
+  }
+  .program .p-link:hover{color:var(--marigold-dark);}
+
+  /* ---------- Why choose ---------- */
+  .why-list{list-style:none; margin:0; padding:0; display:grid; gap:18px; max-width:68ch;}
+  .why-list li{padding-left:24px; position:relative;}
+  .why-list li::before{
+    content:""; position:absolute; left:0; top:9px; width:9px; height:9px; background:var(--marigold);
+  }
+
+  /* ---------- Philosophy ---------- */
+  .philosophy-flow{
+    font-family:'Space Grotesk',sans-serif; font-weight:600;
+    font-size:clamp(1.5rem,4vw,2.5rem); color:var(--chalk);
+    display:flex; flex-wrap:wrap; gap:14px; align-items:center; margin:0 0 26px;
+  }
+  .philosophy-flow .arrow{color:var(--marigold); font-weight:400;}
+  .philosophy-sub{color:rgba(244,241,231,.85); max-width:62ch; font-size:1.02rem; margin:0 0 8px;}
+  .philosophy-cite{
+    font-family:'IBM Plex Mono',monospace; font-size:.82rem; color:rgba(244,241,231,.6); margin-top:18px;
+  }
+
+  /* ---------- Proof ---------- */
+  .cert-list{
+    list-style:none; margin:0 0 48px; padding:0; display:flex; flex-wrap:wrap; gap:12px 28px;
+    font-family:'IBM Plex Mono',monospace; font-size:.84rem; color:rgba(20,33,58,.75);
+  }
+  .cert-list li{padding-left:16px; position:relative;}
+  .cert-list li::before{content:"";position:absolute; left:0; top:6px; width:7px; height:7px; background:var(--cyan);}
+  .testimonials{display:grid; grid-template-columns:repeat(3,1fr); gap:24px;}
+  @media (max-width:860px){ .testimonials{grid-template-columns:1fr;} }
+  .t-card{background:var(--chalk); border-top:3px solid var(--marigold); padding:24px;}
+  .t-card p{margin:0 0 16px; font-size:.98rem;}
+  .t-card cite{
+    display:block; font-style:normal; font-family:'Space Grotesk',sans-serif; font-weight:600; font-size:.92rem;
+  }
+  .t-card .t-role{
+    display:block; font-family:'IBM Plex Mono',monospace; font-size:.78rem; color:rgba(20,33,58,.6); margin-top:2px;
+  }
+
+  /* ---------- CTA close ---------- */
+  .cta-close{text-align:left;}
+  .cta-close h2{font-size:clamp(1.8rem,3.6vw,2.6rem); margin:0 0 16px; font-weight:600; color:var(--chalk);}
+  .cta-close p{color:rgba(244,241,231,.85); max-width:56ch; margin:0 0 30px;}
+
+  /* ---------- Footer ---------- */
+  footer{background:var(--ink); color:rgba(244,241,231,.85); padding:56px 0 32px;}
+  .footer-grid{display:grid; grid-template-columns:1.3fr 1fr 1fr; gap:36px; margin-bottom:40px;}
+  @media (max-width:700px){ .footer-grid{grid-template-columns:1fr; gap:28px;} }
+  footer h4{
+    font-family:'Space Grotesk',sans-serif; font-size:.86rem; font-weight:600;
+    color:var(--chalk); margin:0 0 14px;
+  }
+  footer ul{list-style:none; margin:0; padding:0; display:grid; gap:10px; font-size:.92rem;}
+  footer a{text-decoration:none;}
+  footer a:hover{color:var(--marigold);}
+  .footer-brand{font-family:'Space Grotesk',sans-serif; font-weight:700; font-size:1.1rem; color:var(--chalk);}
+  .footer-brand span{color:var(--marigold);}
+  .footer-tagline{font-size:.92rem; margin-top:10px; max-width:36ch; color:rgba(244,241,231,.7);}
+  .footer-bottom{
+    border-top:1px solid var(--line-chalk); padding-top:22px; font-size:.82rem;
+    color:rgba(244,241,231,.55); font-family:'IBM Plex Mono',monospace;
+  }
+</style>
+</head>
+<body>
+<a href="#main" class="skip-link">Skip to content</a>
+
+<a class="side-tab" href="https://tecfunnel.vercel.app/" target="_blank" rel="noopener">Tecno Zone — Free Q4 Income Blueprint</a>
+
+<header class="site-nav">
+  <div class="nav-row">
+    <a href="#home" class="brand">SAK <span>COACHING</span></a>
+    <nav class="links" id="navLinks">
+      <a href="#home">Home</a>
+      <a href="#about">About</a>
+      <a href="#programs">Programs</a>
+      <a href="#who-i-help">Who I help</a>
+      <a href="#proof">Proof</a>
+      <a href="#contact">Contact</a>
+    </nav>
+    <button class="nav-toggle" id="navToggle" aria-label="Toggle menu" aria-expanded="false" aria-controls="navLinks">
+      <span></span><span></span><span></span>
+    </button>
+  </div>
+</header>
+
+<main id="main">
+
+  <!-- HERO -->
+  <section class="blueprint hero" id="home">
+    <div class="wrap hero-grid">
+      <div>
+        <h1>Turning beginners into AI&#8209;enabled builders.</h1>
+        <p class="lede">I'm Syed Ahmed Kabir Hashmi — a Karachi-based trainer, coach and technologist. I teach complete beginners to build real things with Python, AI and prompt engineering, and I coach freelancers and pre-entrepreneurs through the growth-mindset systems that turn new skills into income.</p>
+        <div class="btn-row">
+          <a class="btn btn-primary" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20coaching%20programs." target="_blank" rel="noopener">Chat on WhatsApp</a>
+          <a class="btn btn-ghost" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20join%20the%20free%20masterclass." target="_blank" rel="noopener">Join the free masterclass</a>
+        </div>
+      </div>
+      <div>
+        <div class="portrait-frame">
+          <span class="corner tl"></span><span class="corner br"></span>
+          <img src="assets/headshot.png" alt="Portrait of Syed Ahmed Kabir Hashmi">
+        </div>
+        <p class="portrait-cap">Karachi, Pakistan · Director of Training &amp; Business Development, Prepreneurship</p>
+      </div>
+    </div>
+  </section>
+
+  <!-- STATS -->
+  <section class="stats">
+    <div class="wrap stats-row">
+      <div>
+        <div class="stat-num mono-num">11+</div>
+        <div class="stat-label">years training, coaching and speaking</div>
+      </div>
+      <div>
+        <div class="stat-num mono-num">299+</div>
+        <div class="stat-label">freelance projects delivered, 2014–2019, 98% client satisfaction</div>
+      </div>
+      <div>
+        <div class="stat-num mono-num">299+</div>
+        <div class="stat-label">students and clients coached since 2016</div>
+      </div>
+      <div>
+        <div class="stat-num mono-num">215+</div>
+        <div class="stat-label">international clients across 7 countries</div>
+      </div>
+    </div>
+  </section>
+
+  <!-- ABOUT -->
+  <section id="about">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>About me</h2>
+      </div>
+      <div class="about-grid">
+        <div>
+          <p>Technology is moving fast. Most people fall behind it not because they lack ability, but because they lack a learning system built for how skills actually stick, and a way to turn those skills into income. That gap is what my work is built around.</p>
+          <p>I work with complete beginners, students, aspiring freelancers, and training organisations building their own AI programs. Whatever the starting point, the method stays the same: learn something, build something, publish something, improve something.</p>
+          <div class="credentials">
+            MCS, Computer Science — University of Karachi<br>
+            WordPress Expert · Certified Internet Marketer (Elance)<br>
+            Social Media Marketing · Online Freelancing Essentials
+          </div>
+        </div>
+        <div>
+          <blockquote class="pull">"People aren't behind because they lack intelligence. They're behind because they've never had a supportive learning system and a real opportunity to build."</blockquote>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- JOURNEY -->
+  <section class="blueprint">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>My journey</h2>
+        <p>Two decades moving between the classroom, the freelance marketplace, and the boardroom — and building a coaching practice out of what worked in each.</p>
+      </div>
+      <div class="timeline">
+        <div class="t-item">
+          <div class="t-year">2002 – 2007</div>
+          <h3>Taught computer science</h3>
+          <p>Secondary school students in Karachi — the first classroom, long before the coaching practice.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2012</div>
+          <h3>Started a tech blog</h3>
+          <p>Sharing apps, reviews and client work — early proof that consistency compounds faster than chasing an audience.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2014 – 2019</div>
+          <h3>Built a freelance practice</h3>
+          <p>299+ projects delivered on Fiverr for clients across the US, UK, Canada, Australia, South Korea, Brazil and India — 98% satisfaction.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2016</div>
+          <h3>Founded SAK Coaching</h3>
+          <p>Turned that experience into structured mentoring — the Growth Mindset System, Ultimate Digital Warrior, and the 90-Day Run Framework.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2019 – 2021</div>
+          <h3>Led business development</h3>
+          <p>Closed international contracts and managed delivery teams for two Karachi-based firms.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2025</div>
+          <h3>Co-founded Tecno Zone Softwares</h3>
+          <p>Building SaaS, AI and mobile products alongside one of Pakistan's youngest startup CEOs.</p>
+        </div>
+        <div class="t-item">
+          <div class="t-year">2026 – Present</div>
+          <h3>Director of Training &amp; Business Development, Prepreneurship</h3>
+          <p>Running Python, full-stack and AI programs for the next generation of builders.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHO I HELP -->
+  <section id="who-i-help">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Who I help</h2>
+        <p>Two kinds of people land on this page, and I built the offer around both.</p>
+      </div>
+      <div class="help-grid">
+        <div class="help-panel">
+          <h3>Learners and freelancers</h3>
+          <p>Complete beginners, students and aspiring freelancers who want to learn Python, AI and prompt engineering — and the growth-mindset coaching to turn those skills into a freelance career or a small business.</p>
+        </div>
+        <div class="help-panel biz">
+          <h3>Businesses and training organisations</h3>
+          <p>Companies that need web, app or game development, AI automation, or a SaaS build, delivered through Tecno Zone Softwares — plus training organisations building their own AI programs.</p>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- PROGRAMS -->
+  <section id="programs" style="background:var(--paper-2);">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Programs &amp; offers</h2>
+        <p>Pick the entry point that matches where you're starting from.</p>
+      </div>
+      <div class="program-list">
+        <div class="program">
+          <h3>Growth Mindset System (GMS)</h3>
+          <p>The coaching program for building the mindset and habits behind consistent income.</p>
+          <a class="p-link" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Growth%20Mindset%20System." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+        <div class="program">
+          <h3>Ultimate Digital Warrior (UDW)</h3>
+          <p>A structured path from digital beginner to freelance-ready builder.</p>
+          <a class="p-link" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20know%20more%20about%20Ultimate%20Digital%20Warrior." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+        <div class="program">
+          <h3>90-Day Run Framework</h3>
+          <p>A 90-day execution framework for turning a skill into a client-paying business.</p>
+          <a class="p-link" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20know%20more%20about%20the%2090-Day%20Run%20Framework." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+        <div class="program">
+          <h3>Prepreneurship training tracks</h3>
+          <p>Python, full-stack development, and AI &amp; prompt engineering — including NAVTTC-accredited programs.</p>
+          <a class="p-link" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20know%20more%20about%20the%20Prepreneurship%20training%20tracks." target="_blank" rel="noopener">Ask on WhatsApp</a>
+        </div>
+        <div class="program">
+          <h3>Free masterclass</h3>
+          <p>A live session to see the teaching style and the frameworks before committing to a program.</p>
+          <a class="p-link" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20join%20the%20free%20masterclass." target="_blank" rel="noopener">Join on WhatsApp</a>
+        </div>
+        <div class="program">
+          <h3>Digital playbooks &amp; blueprints</h3>
+          <p>Templates and guides for freelancing, AI workflows and digital income, shared as a WhatsApp catalogue.</p>
+          <a class="p-link" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20see%20the%20digital%20playbooks%20catalogue." target="_blank" rel="noopener">See the catalogue</a>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- WHY CHOOSE ME -->
+  <section>
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Why work with me</h2>
+      </div>
+      <ul class="why-list">
+        <li>I've done the work I teach — 299+ freelance projects and a technology company of my own, not just theory.</li>
+        <li>Direct access to me, not a support queue or a course platform.</li>
+        <li>Technical and commercial in one place — I train the skill and the business development that turns it into income.</li>
+        <li>Built for beginners — the frameworks assume zero background, not partial knowledge.</li>
+        <li>A track record across two markets — corporate clients in Pakistan and freelance clients across seven countries.</li>
+      </ul>
+    </div>
+  </section>
+
+  <!-- PHILOSOPHY -->
+  <section class="blueprint">
+    <div class="wrap">
+      <div class="section-head">
+        <h2 style="color:var(--chalk);">My philosophy</h2>
+      </div>
+      <div class="philosophy-flow">
+        <span>Dream</span><span class="arrow">→</span><span>Learn</span><span class="arrow">→</span><span>Earn</span><span class="arrow">→</span><span>Build</span>
+      </div>
+      <p class="philosophy-sub">Every program I run bridges traditional education with the modern digital economy through this sequence — guiding students through practical project execution, live launches and market readiness, rather than theory alone.</p>
+      <p class="philosophy-sub">You learn faster when you learn something, build something, publish something, improve something. That loop is behind every curriculum, challenge and workshop I design.</p>
+    </div>
+  </section>
+
+  <!-- PROOF -->
+  <section id="proof">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Proof &amp; track record</h2>
+        <p>Certifications, and words from people I've worked with directly.</p>
+      </div>
+      <ul class="cert-list">
+        <li>WordPress Expert</li>
+        <li>Certified Internet Marketer — Elance</li>
+        <li>Social Media Marketing</li>
+        <li>Online Freelancing Essentials — Fiverr</li>
+        <li>Customer Service and Sales</li>
+      </ul>
+      <div class="testimonials">
+        <div class="t-card">
+          <p>"Working with Mr. Syed Ahmed Kabir Hashmi has been a great experience. He is professional, knowledgeable, and skilled in Python and technology-related work. His dedication, technical expertise, and helpful attitude make him a valuable team member. Highly recommended."</p>
+          <cite>As-Saadah<span class="t-role">Organisation, working relationship</span></cite>
+        </div>
+        <div class="t-card">
+          <p>"Quite dedicated, knowledgeable and professional. Loved doing a project together."</p>
+          <cite>Saqib Rehman<span class="t-role">Senior Software Engineer — iOS, Swift, SwiftUI, React Native</span></cite>
+        </div>
+        <div class="t-card">
+          <p>"Ahmed is the best person to work with."</p>
+          <cite>Khurram Khan<span class="t-role">Head of Operations, PMO — splitarts.com</span></cite>
+        </div>
+      </div>
+    </div>
+  </section>
+
+  <!-- CTA CLOSE -->
+  <section class="blueprint">
+    <div class="wrap cta-close">
+      <h2>Ready to build something real?</h2>
+      <p>Start with a free masterclass, or message me directly — I read and reply to WhatsApp myself.</p>
+      <div class="btn-row">
+        <a class="btn btn-primary" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20learn%20more%20about%20your%20coaching%20programs." target="_blank" rel="noopener">Chat on WhatsApp</a>
+        <a class="btn btn-ghost" href="https://wa.me/923132246946?text=Hi%20Ahmed%2C%20I%27d%20like%20to%20join%20the%20free%20masterclass." target="_blank" rel="noopener">Join the free masterclass</a>
+      </div>
+    </div>
+  </section>
+
+</main>
+
+<footer id="contact">
+  <div class="wrap">
+    <div class="footer-grid">
+      <div>
+        <div class="footer-brand">SAK <span>COACHING</span></div>
+        <p class="footer-tagline">AI &amp; digital skills education and growth-mindset coaching, from Karachi, Pakistan to seven countries and counting.</p>
+      </div>
+      <div>
+        <h4>Quick links</h4>
+        <ul>
+          <li><a href="#home">Home</a></li>
+          <li><a href="#about">About</a></li>
+          <li><a href="#programs">Programs</a></li>
+          <li><a href="#proof">Proof</a></li>
+        </ul>
+      </div>
+      <div>
+        <h4>Contact</h4>
+        <ul>
+          <li><a href="https://wa.me/923132246946" target="_blank" rel="noopener">WhatsApp — +92 313 2246946</a></li>
+          <li><a href="mailto:ahmed.kabirhashmi@gmail.com">ahmed.kabirhashmi@gmail.com</a></li>
+          <li><a href="https://www.linkedin.com/in/sakcoaching/" target="_blank" rel="noopener">LinkedIn</a></li>
+          <li><a href="https://smartklub.net/register/smartklub3" target="_blank" rel="noopener">Blog</a></li>
+        </ul>
+      </div>
+    </div>
+    <div class="footer-bottom">© 2026 Syed Ahmed Kabir Hashmi — SAK Coaching. All rights reserved.</div>
+  </div>
+</footer>
+
+<script>
+  var toggle = document.getElementById('navToggle');
+  var links = document.getElementById('navLinks');
+  toggle.addEventListener('click', function(){
+    var isOpen = links.classList.toggle('open');
+    toggle.setAttribute('aria-expanded', isOpen ? 'true' : 'false');
+  });
+  links.querySelectorAll('a').forEach(function(a){
+    a.addEventListener('click', function(){
+      links.classList.remove('open');
+      toggle.setAttribute('aria-expanded','false');
+    });
+  });
+</script>
+</body>
+</html>
