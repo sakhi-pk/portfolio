@@ -220,6 +220,32 @@
   }
   .program .p-link:hover{color:var(--marigold-dark);}
 
+  /* ---------- Portfolio ---------- */
+  .portfolio-tabs{
+    display:flex; flex-wrap:wrap; gap:8px; border-bottom:1px solid var(--line); margin-bottom:32px;
+  }
+  .portfolio-tab{
+    font-family:'IBM Plex Mono',monospace; font-size:.82rem; font-weight:500;
+    background:none; border:none; cursor:pointer; color:rgba(20,33,58,.6);
+    padding:10px 4px; margin-right:20px; border-bottom:2px solid transparent;
+  }
+  .portfolio-tab:hover{color:var(--ink);}
+  .portfolio-tab.active{color:var(--ink); border-bottom-color:var(--marigold);}
+  .portfolio-grid{
+    display:grid; grid-template-columns:1fr 1fr; gap:16px;
+  }
+  @media (max-width:700px){ .portfolio-grid{grid-template-columns:1fr;} }
+  .portfolio-card{
+    padding:22px; background:var(--chalk); border:1px solid var(--line);
+  }
+  .portfolio-card-top{display:flex; justify-content:space-between; align-items:center; gap:12px; margin-bottom:6px;}
+  .portfolio-card h3{font-size:1.02rem; font-weight:600; margin:0;}
+  .portfolio-card p{margin:0; font-size:.94rem; color:rgba(20,33,58,.8);}
+  .portfolio-date{
+    font-family:'IBM Plex Mono',monospace; font-size:.72rem; white-space:nowrap;
+    background:rgba(74,135,181,.14); color:var(--cyan); padding:2px 8px; border-radius:20px;
+  }
+
   /* ---------- Why choose ---------- */
   .why-list{list-style:none; margin:0; padding:0; display:grid; gap:18px; max-width:68ch;}
   .why-list li{padding-left:24px; position:relative;}
@@ -295,6 +321,7 @@
       <a href="#about">About</a>
       <a href="#programs">Programs</a>
       <a href="#who-i-help">Who I help</a>
+      <a href="#portfolio">Portfolio</a>
       <a href="#proof">Proof</a>
       <a href="#contact">Contact</a>
     </nav>
@@ -481,6 +508,25 @@
     </div>
   </section>
 
+  <!-- PORTFOLIO -->
+  <section id="portfolio">
+    <div class="wrap">
+      <div class="section-head">
+        <h2>Portfolio</h2>
+        <p>A sample of apps, games, sites and campaigns delivered across the last decade.</p>
+      </div>
+
+      <div class="portfolio-tabs" id="portfolioTabs">
+        <button class="portfolio-tab active" data-tab="Mobile Apps &amp; Games">Mobile Apps &amp; Games</button>
+        <button class="portfolio-tab" data-tab="Web &amp; E-Commerce">Web &amp; E-Commerce</button>
+        <button class="portfolio-tab" data-tab="EdTech &amp; Courses">EdTech &amp; Courses</button>
+        <button class="portfolio-tab" data-tab="Marketing &amp; Strategy">Marketing &amp; Strategy</button>
+      </div>
+
+      <div class="portfolio-grid" id="portfolioGrid"></div>
+    </div>
+  </section>
+
   <!-- WHY CHOOSE ME -->
   <section>
     <div class="wrap">
@@ -569,6 +615,7 @@
           <li><a href="#home">Home</a></li>
           <li><a href="#about">About</a></li>
           <li><a href="#programs">Programs</a></li>
+          <li><a href="#portfolio">Portfolio</a></li>
           <li><a href="#proof">Proof</a></li>
         </ul>
       </div>
@@ -599,6 +646,59 @@
       toggle.setAttribute('aria-expanded','false');
     });
   });
+
+  // ---------- Portfolio ----------
+  var portfolioData = {
+    "Mobile Apps & Games": [
+      { title: "Quiz for Students", date: "Sep 2026", desc: "Interactive 43-question assessment tool with PDF output." },
+      { title: "Super Jumping Penguin Adventure", date: "Aug 2017", desc: "Addictive action platformer game for Android." },
+      { title: "8192 Number Puzzle", date: "Aug 2016", desc: "Premium 2048 edition with multiple grid sizes." },
+      { title: "Guess WHAT AM I? Riddles", date: "Jun 2016", desc: "DesignNominees Game of the Day winner." }
+    ],
+    "Web & E-Commerce": [
+      { title: "Ashi Collection Store", date: "May 2025", desc: "Shopify E-commerce platform." },
+      { title: "Metabee Solutions", date: "Jan 2025", desc: "Agency website, blog & biolink hub." },
+      { title: "Dr Faiza Homeo Clinic", date: "Jan 2014", desc: "Specialized online medical consultation site." }
+    ],
+    "EdTech & Courses": [
+      { title: "Prepreneurship Program", date: "Apr 2026", desc: "Youth acceleration program for digital careers." },
+      { title: "SAK Coaching / Binance Urdu", date: "Jan 2025", desc: "Financial literacy & crypto course community." },
+      { title: "Mastering Fiverr in 100 Days", date: "Dec 2018", desc: "Comprehensive freelancing masterclass." }
+    ],
+    "Marketing & Strategy": [
+      { title: "Hafiz Organic Nest", date: "2026", desc: "Social advertising & brand positioning campaign." },
+      { title: "Cross Writing Teaser", date: "2025", desc: "Meta Ads targeting 700k+ group members." }
+    ]
+  };
+
+  var portfolioTabs = document.getElementById('portfolioTabs');
+  var portfolioGrid = document.getElementById('portfolioGrid');
+
+  function renderPortfolio(tabName){
+    portfolioGrid.innerHTML = '';
+    portfolioData[tabName].forEach(function(item){
+      var card = document.createElement('div');
+      card.className = 'portfolio-card';
+      card.innerHTML =
+        '<div class="portfolio-card-top">' +
+          '<h3>' + item.title + '</h3>' +
+          '<span class="portfolio-date">' + item.date + '</span>' +
+        '</div>' +
+        '<p>' + item.desc + '</p>';
+      portfolioGrid.appendChild(card);
+    });
+  }
+
+  if (portfolioTabs) {
+    portfolioTabs.querySelectorAll('.portfolio-tab').forEach(function(btn){
+      btn.addEventListener('click', function(){
+        portfolioTabs.querySelectorAll('.portfolio-tab').forEach(function(b){ b.classList.remove('active'); });
+        btn.classList.add('active');
+        renderPortfolio(btn.getAttribute('data-tab'));
+      });
+    });
+    renderPortfolio('Mobile Apps & Games');
+  }
 </script>
 </body>
 </html>
